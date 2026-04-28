@@ -176,7 +176,9 @@ services:
     container_name: broadsea-ares
     restart: unless-stopped
     build:
-      context: https://github.com/OHDSI/Ares.git
+      # We change the context below to a version of Ares that will work 
+      #context: https://github.com/OHDSI/Ares.git 
+      context: /Users/jlawson9/Desktop/Git/Ares
     volumes:
       - ${ARES_DATA_FOLDER}:/usr/share/nginx/html/ares/data:ro
     labels:
