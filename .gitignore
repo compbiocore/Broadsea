@@ -7,3 +7,5 @@ phoebe/__MACOSX
 atlas/add_cdm
 .Rproj.user
 strategus/
+ares/data/*
+!ares/data/.gitkeep

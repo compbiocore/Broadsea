@@ -16,7 +16,14 @@ envVarNames <- list(
 
 jobConfig <- as.list(Sys.getenv(envVarNames, unset = NA))
 
-aresDataRoot <- "/postprocessing/ares"
+# aresDataRoot <- "/postprocessing/ares"
+
+aresDataRoot <- Sys.getenv("ARES_DATA_ROOT", unset = "/ares-data")
+
+if (!dir.exists(aresDataRoot)) {
+    dir.create(aresDataRoot, recursive = TRUE)
+}
+
 releaseKey <- AresIndexer::getSourceReleaseKey(connectionDetails = connectionDetails,
                                                cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA)
 datasourceReleaseOutputFolder <- file.path(aresDataRoot, releaseKey)
@@ -33,7 +40,19 @@ dqdFilePath <- file.path("/postprocessing",
     cdmConfig$CDM_DATABASE_SCHEMA,
     "dq-result.json"
 )
-file.copy(from = dqdFilePath, to = file.path(datasourceReleaseOutputFolder, "dq-result.json"), overwrite = TRUE)
+# file.copy(from = dqdFilePath, to = file.path(datasourceReleaseOutputFolder, "dq-result.json"), overwrite = TRUE)
+
+if (!file.exists(dqdFilePath)) {
+    stop("DQD result file not found: ", dqdFilePath)
+}
+
+file.copy(
+    from = dqdFilePath,
+    to = file.path(datasourceReleaseOutputFolder, "dq-result.json"),
+    overwrite = TRUE
+)
+
+
 
 Achilles::exportToAres(connectionDetails = connectionDetails,
                        cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,

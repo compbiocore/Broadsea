@@ -38,7 +38,8 @@ if (jobConfig$ACHILLES_ANALYSIS_IDS == "") {
 
 result <- Achilles::achilles(
     connectionDetails = connectionDetails,
-    sourceName = cdmConfig$ACHILLES_SOURCE_NAME,
+    # sourceName = cdmConfig$ACHILLES_SOURCE_NAME,
+    sourceName = cdmConfig$CDM_SOURCE_NAME, # defined by init.R 
     cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,
     scratchDatabaseSchema = cdmConfig$SCRATCH_DATABASE_SCHEMA,
     resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,

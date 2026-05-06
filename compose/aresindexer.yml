@@ -22,6 +22,7 @@ services:
     volumes:
       - jdbc-drivers-data:/jdbc
       - cdm-postprocessing-data:/postprocessing
+      - ${ARES_DATA_FOLDER}:/ares-data
       - ../postprocessing/init.R:/postprocessing/init.R
       - ../ares/run_aresindexer.R:/postprocessing/ares/scripts/${CDM_DATABASE_SCHEMA}.R
     entrypoint: ["Rscript", "/postprocessing/ares/scripts/${CDM_DATABASE_SCHEMA}.R" ]

@@ -176,9 +176,11 @@ services:
     container_name: broadsea-ares
     restart: unless-stopped
     build:
-      # We change the context below to a version of Ares that will work 
+      # We change the context below to a version of Ares that will work - will need to change to combiocore forked repo for production 
       #context: https://github.com/OHDSI/Ares.git 
-      context: /Users/jlawson9/Desktop/Git/Ares
+      context: https://github.com/compbiocore/Ares.git
+      #context: /Users/jlawson9/Desktop/Git/Ares
+      #image: ghcr.io/YOUR_ORG/broadsea-ares:YYYYMMDD (for better productionized version)
     volumes:
       - ${ARES_DATA_FOLDER}:/usr/share/nginx/html/ares/data:ro
     labels:
