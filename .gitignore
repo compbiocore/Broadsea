@@ -9,3 +9,4 @@ atlas/add_cdm
 strategus/
 ares/data/*
 !ares/data/.gitkeep
+secrets/github_pat
