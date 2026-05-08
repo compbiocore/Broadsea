@@ -3,7 +3,8 @@ version: '3.9'
 services:
 
   broadsea-run-aresindexer:
-    build: ../ares
+    #build: ../ares
+    image: ghcr.io/compbiocore/broadsea-aresindexer:2026-05-06-fix2
     platform: "linux/amd64"
     container_name: broadsea-run-aresindexer
     secrets:

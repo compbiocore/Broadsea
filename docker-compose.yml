@@ -283,10 +283,11 @@ services:
 
   broadsea-run-achilles:
     profiles: [ "cdm-postprocessing", "achilles" ]
-    build: 
-      context: ./achilles
-      secrets:
-        - GITHUB_PAT
+    #build: 
+    #  context: ./achilles
+    #  secrets:
+    #    - GITHUB_PAT
+    image: ghcr.io/compbiocore/broadsea-achilles:2026-05-06-fix2
     platform: "linux/amd64"
     container_name: broadsea-run-achilles
     secrets:
@@ -327,10 +328,7 @@ services:
 
   broadsea-run-dqd:
     profiles: [ "cdm-postprocessing", "dqd" ]
-    build: 
-      context: ./dqd
-      secrets:
-        - GITHUB_PAT
+    image: ghcr.io/compbiocore/broadsea-dqd:2026-05-06-fix2
     platform: "linux/amd64"
     container_name: broadsea-run-dqd
     secrets:
