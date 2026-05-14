@@ -1,83 +1,112 @@
 source("/postprocessing/init.R")
 
 envVarNames <- list(
-    "ARES_CONNECTIONDETAILS_DBMS",
-    "ARES_CONNECTIONDETAILS_USER",
-    "ARES_CONNECTIONDETAILS_PASSWORD",
-    "ARES_CONNECTIONDETAILS_SERVER",
-    "ARES_CONNECTIONDETAILS_PORT",
-    "ARES_CONNECTIONDETAILS_EXTRA_SETTINGS",
-    "ARES_CDM_DATABASE_SCHEMA",
-    "ARES_RESULTS_DATABASE_SCHEMA",
-    "ARES_VOCAB_DATABASE_SCHEMA",
-    "ARES_SQL_DIALECT",
-    "ARES_RUN_NETWORK"
+  "ARES_RUN_NETWORK"
 )
 
 jobConfig <- as.list(Sys.getenv(envVarNames, unset = NA))
 
-# aresDataRoot <- "/postprocessing/ares"
-
 aresDataRoot <- Sys.getenv("ARES_DATA_ROOT", unset = "/ares-data")
 
 if (!dir.exists(aresDataRoot)) {
-    dir.create(aresDataRoot, recursive = TRUE)
+  dir.create(aresDataRoot, recursive = TRUE)
 }
 
-releaseKey <- AresIndexer::getSourceReleaseKey(connectionDetails = connectionDetails,
-                                               cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA)
+message("Ares data root: ", aresDataRoot)
+message("CDM schema: ", cdmConfig$CDM_DATABASE_SCHEMA)
+message("Results schema: ", cdmConfig$RESULTS_DATABASE_SCHEMA)
+message("Vocab schema: ", cdmConfig$VOCAB_DATABASE_SCHEMA)
+
+# Export Achilles results into Ares format first.
+Achilles::exportToAres(
+  connectionDetails = connectionDetails,
+  cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,
+  resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,
+  vocabDatabaseSchema = cdmConfig$VOCAB_DATABASE_SCHEMA,
+  outputPath = aresDataRoot,
+  reports = c()
+)
+
+# Try to get the Ares source-release key.
+releaseKey <- AresIndexer::getSourceReleaseKey(
+  connectionDetails = connectionDetails,
+  cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA
+)
+
+# Fallback if AresIndexer cannot infer the key.
+if (length(releaseKey) == 0 || is.na(releaseKey) || !nzchar(releaseKey)) {
+  message("AresIndexer::getSourceReleaseKey() returned empty. Searching Ares data root for generated release folder.")
+
+  sourceFolders <- list.dirs(aresDataRoot, recursive = FALSE, full.names = FALSE)
+  sourceFolders <- sourceFolders[!sourceFolders %in% c("", ".", "..")]
+
+  if (length(sourceFolders) > 0) {
+    releaseKey <- sourceFolders[[1]]
+  } else {
+    releaseKey <- paste0(
+      gsub("[^A-Za-z0-9_\\-]", "_", cdmConfig$CDM_DATABASE_SCHEMA),
+      "_",
+      format(Sys.Date(), "%Y%m%d")
+    )
+  }
+}
+
+message("Using Ares releaseKey: ", releaseKey)
+
 datasourceReleaseOutputFolder <- file.path(aresDataRoot, releaseKey)
 
 if (!dir.exists(datasourceReleaseOutputFolder)) {
-    dir.create(path = datasourceReleaseOutputFolder, recursive = TRUE)
+  dir.create(path = datasourceReleaseOutputFolder, recursive = TRUE)
 }
 
-# copy DQD results JSON file to this folder ------------
-
-dqdFilePath <- file.path("/postprocessing",
-    "dqd",
-    "data",
-    cdmConfig$CDM_DATABASE_SCHEMA,
-    "dq-result.json"
+# Copy DQD results JSON into the Ares release folder.
+dqdFilePath <- file.path(
+  "/postprocessing",
+  "dqd",
+  "data",
+  cdmConfig$CDM_DATABASE_SCHEMA,
+  "dq-result.json"
 )
-# file.copy(from = dqdFilePath, to = file.path(datasourceReleaseOutputFolder, "dq-result.json"), overwrite = TRUE)
 
 if (!file.exists(dqdFilePath)) {
-    stop("DQD result file not found: ", dqdFilePath)
+  stop("DQD result file not found: ", dqdFilePath)
 }
 
 file.copy(
-    from = dqdFilePath,
-    to = file.path(datasourceReleaseOutputFolder, "dq-result.json"),
-    overwrite = TRUE
+  from = dqdFilePath,
+  to = file.path(datasourceReleaseOutputFolder, "dq-result.json"),
+  overwrite = TRUE
 )
 
-
-
-Achilles::exportToAres(connectionDetails = connectionDetails,
-                       cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,
-                       resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,
-                       vocabDatabaseSchema = cdmConfig$VOCAB_DATABASE_SCHEMA,
-                       outputPath = aresDataRoot,
-                       reports = c())
-
-
-# perform temporal characterization ------------
-
+# Temporal characterization.
 outputFile <- file.path(datasourceReleaseOutputFolder, "temporal-characterization.csv")
-Achilles::performTemporalCharacterization(connectionDetails = connectionDetails,
-                                          cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,
-                                          resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,
-                                          outputFile = outputFile)
 
-# augment concept files with temporal characterization data ---------------
+Achilles::performTemporalCharacterization(
+  connectionDetails = connectionDetails,
+  cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,
+  resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,
+  outputFile = outputFile
+)
 
-AresIndexer::augmentConceptFiles(releaseFolder = file.path(aresDataRoot, releaseKey))
+# Augment concept files.
+AresIndexer::augmentConceptFiles(
+  releaseFolder = datasourceReleaseOutputFolder
+)
 
+# Build indexes.
+sourceFolders <- list.dirs(aresDataRoot, recursive = FALSE)
 
-if (as.logical(jobConfig$ARES_RUN_NETWORK)) {
-    sourceFolders <- list.dirs(aresDataRoot, recursive = FALSE)
-    AresIndexer::buildNetworkIndex(sourceFolders = sourceFolders, outputFolder = aresDataRoot)
-    AresIndexer::buildDataQualityIndex(sourceFolders = sourceFolders, outputFolder = aresDataRoot)
-    AresIndexer::buildNetworkUnmappedSourceCodeIndex(sourceFolders = sourceFolders, outputFolder = aresDataRoot)
-}
+AresIndexer::buildNetworkIndex(
+  sourceFolders = sourceFolders,
+  outputFolder = aresDataRoot
+)
+
+AresIndexer::buildDataQualityIndex(
+  sourceFolders = sourceFolders,
+  outputFolder = aresDataRoot
+)
+
+AresIndexer::buildNetworkUnmappedSourceCodeIndex(
+  sourceFolders = sourceFolders,
+  outputFolder = aresDataRoot
+)

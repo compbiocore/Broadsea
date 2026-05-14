@@ -14,9 +14,41 @@ envVarNames <- list(
 )
 
 
-Sys.setenv("CDM_CONNECTIONDETAILS_PASSWORD" =
-    readChar("/run/secrets/CDM_CONNECTIONDETAILS_PASSWORD",
-         file.info("/run/secrets/CDM_CONNECTIONDETAILS_PASSWORD")$size))
+#Sys.setenv("CDM_CONNECTIONDETAILS_PASSWORD" =
+#    readChar("/run/secrets/CDM_CONNECTIONDETAILS_PASSWORD",
+#         file.info("/run/secrets/CDM_CONNECTIONDETAILS_PASSWORD")$size))
+
+password_from_env <- Sys.getenv("CDM_CONNECTIONDETAILS_PASSWORD", unset = "")
+
+password_from_secret <- ""
+secret_path <- "/run/secrets/CDM_CONNECTIONDETAILS_PASSWORD"
+
+if (file.exists(secret_path)) {
+  password_from_secret <- readChar(secret_path, file.info(secret_path)$size)
+  password_from_secret <- trimws(password_from_secret)
+}
+
+if (nzchar(password_from_env)) {
+  Sys.setenv("CDM_CONNECTIONDETAILS_PASSWORD" = password_from_env)
+} else if (nzchar(password_from_secret)) {
+  Sys.setenv("CDM_CONNECTIONDETAILS_PASSWORD" = password_from_secret)
+}
+
+password_from_env <- Sys.getenv("CDM_CONNECTIONDETAILS_PASSWORD", unset = "")
+
+password_from_secret <- ""
+secret_path <- "/run/secrets/CDM_CONNECTIONDETAILS_PASSWORD"
+
+if (file.exists(secret_path)) {
+  password_from_secret <- readChar(secret_path, file.info(secret_path)$size)
+  password_from_secret <- trimws(password_from_secret)
+}
+
+if (nzchar(password_from_env)) {
+  Sys.setenv("CDM_CONNECTIONDETAILS_PASSWORD" = password_from_env)
+} else if (nzchar(password_from_secret)) {
+  Sys.setenv("CDM_CONNECTIONDETAILS_PASSWORD" = password_from_secret)
+}
 
 cdmConfig <- as.list(Sys.getenv(envVarNames, unset = NA))
 

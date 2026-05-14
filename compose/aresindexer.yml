@@ -4,7 +4,7 @@ services:
 
   broadsea-run-aresindexer:
     #build: ../ares
-    image: ghcr.io/compbiocore/broadsea-aresindexer:2026-05-06-fix2
+    image: ghcr.io/${GHCR_ORG:-compbiocore}/broadsea-aresindexer:${TAG:-2026-05-06-fix2}
     platform: "linux/amd64"
     container_name: broadsea-run-aresindexer
     secrets:
@@ -15,11 +15,13 @@ services:
       CDM_CONNECTIONDETAILS_USER: ${CDM_CONNECTIONDETAILS_USER}
       CDM_CONNECTIONDETAILS_SERVER: ${CDM_CONNECTIONDETAILS_SERVER}
       CDM_CONNECTIONDETAILS_PORT: ${CDM_CONNECTIONDETAILS_PORT}
+      CDM_CONNECTIONDETAILS_PASSWORD: ${CDM_CONNECTIONDETAILS_PASSWORD}
       CDM_CONNECTIONDETAILS_EXTRA_SETTINGS: ${CDM_CONNECTIONDETAILS_EXTRA_SETTINGS}
       CDM_DATABASE_SCHEMA: ${CDM_DATABASE_SCHEMA}
       RESULTS_DATABASE_SCHEMA: ${RESULTS_DATABASE_SCHEMA}
       VOCAB_DATABASE_SCHEMA: ${VOCAB_DATABASE_SCHEMA}
       ARES_RUN_NETWORK: ${ARES_RUN_NETWORK}
+      ARES_DATA_ROOT: ${ARES_DATA_ROOT:-/ares-data}
     volumes:
       - jdbc-drivers-data:/jdbc
       - cdm-postprocessing-data:/postprocessing

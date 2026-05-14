@@ -1,0 +1,39 @@
+Thread: Main
+Message:  org.postgresql.util.PSQLException: Something unusual has occurred to cause the driver to fail. Please report this exception.
+Level:  FATAL
+Time:  2026-05-08 19:39:59
+
+Stack trace:
+11: (function (condition) 
+{
+    if (is(condition, "error")) {
+        log("FATAL"
+10: stop(list("org.postgresql.util.PSQLException: Something unusual has occurre
+9: .jcheck(silent = FALSE)
+8: rJava::.jcall(jdbcDriver, "Ljava/sql/Connection;", "connect", as.character(
+7: connectUsingJdbcDriver(driver, connectionString, user = connectionDetails$u
+6: connectPostgreSql(connectionDetails)
+5: connectUsingJdbc(connectionDetails)
+4: DatabaseConnector::connect(connectionDetails = connectionDetails)
+3: withCallingHandlers(expr, message = function(c) if (inherits(c, classes)) t
+2: suppressMessages(DatabaseConnector::connect(connectionDetails = connectionD
+1: Achilles::achilles(connectionDetails = connectionDetails, sourceName = cdmC
+
+R version:
+R version 4.2.3 (2023-03-15)
+
+Platform:
+x86_64-pc-linux-gnu
+
+Attached base packages:
+- stats
+- graphics
+- grDevices
+- utils
+- datasets
+- methods
+- base
+
+Other attached packages:
+
+
