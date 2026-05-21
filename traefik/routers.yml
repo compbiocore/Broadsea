@@ -32,8 +32,9 @@ http:
       service: "broadsea-hades"
       rule: 'Host(`{{ env "BROADSEA_HOST" }}`) && PathPrefix(`/hades`)'
       middlewares:
+        - "broadsea-hades-add-slash"
         - "broadsea-hades-root-path-header"
-        - "broadsea-hades-path-strip"
+        - "broadsea-hades-path-strip"  
 
     broadsea-solr-vocab:
       entryPoints: '{{ env "HTTP_TYPE" }}'
@@ -140,11 +141,17 @@ http:
         customRequestHeaders:
           Username: "username"
 
+    broadsea-hades-add-slash:
+      redirectRegex:
+        regex: "^https://([^/]+)/hades$"
+        replacement: "https://${1}/hades/"
+        permanent: true
+
     broadsea-hades-path-strip:
       stripPrefix:
         prefixes: 
           - "/hades"
-        forceSlash: false
+        forceSlash: true
 
     broadsea-perseus-strip-prefix:
       stripPrefix:

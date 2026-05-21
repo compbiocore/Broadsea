@@ -255,7 +255,7 @@ services:
     container_name: broadsea-open-shiny-server
     restart: unless-stopped
     expose:
-      - "3838:3838"
+      - "3838"
     volumes:
       - ${OPEN_SHINY_SERVER_APP_ROOT}:/srv/shiny-server/apps:ro
     labels:
