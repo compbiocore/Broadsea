@@ -1,0 +1,11 @@
+CONCEPT_ID,CONCEPT_NAME,CDM_TABLE_NAME,RECORD_COUNT
+0,No matching concept,observation,1320
+0,No matching concept,condition_occurrence,64781
+0,No matching concept,drug_exposure,67490
+0,No matching concept,measurement,44047
+0,No matching concept,procedure_occurrence,36892
+9201,Inpatient Visit,condition_occurrence,551
+9201,Inpatient Visit,measurement,6
+9201,Inpatient Visit,drug_exposure,217
+9201,Inpatient Visit,observation,157
+9201,Inpatient Visit,procedure_occurrence,517

@@ -1,0 +1,52 @@
+CONCEPT_ID,CONCEPT_NAME,NUM_PERSONS,PERCENT_PERSONS,RECORDS_PER_PERSON,PERCENT_PERSONS_NTILE,RECORDS_PER_PERSON_NTILE
+4125906,Suture open wound,1606,0.5961, 1.5,1,2
+4170947,Bone immobilization,1278,0.4744, 1.4,1,2
+4151422,Sputum examination,1226,0.4551, 1.4,1,3
+4163872,Plain chest X-ray,574,0.2131, 1.1,1,3
+4047491,Radiography of humerus,510,0.1893, 1.1,1,4
+4195803,Bone density scan,491,0.1823, 1.3,1,3
+4293740,Injection of tetanus antitoxin,466,0.1730, 1.1,2,4
+4058899,Plain X-ray of clavicle,449,0.1667, 1.1,2,4
+4243062,Radiography of wrist,442,0.1641, 1.1,2,4
+4024289,Radiography of ankle,427,0.1585, 1.1,2,4
+4252419,Radiologic examination of knee,330,0.1225, 1.1,2,5
+4191853,Allergy screening test,320,0.1188, 2.2,3,1
+4107731,Subcutaneous immunotherapy,292,0.1084,60.0,3,1
+44783196,Surgical manipulation of joint of knee,254,0.0943, 1.1,3,5
+4057420,Catheter ablation of tissue of heart,236,0.0876, 1.9,3,2
+4202451,Percutaneous mechanical thrombectomy of portal vein using fluoroscopic guidance,218,0.0809, 1.1,3,5
+4198190,Appendectomy,157,0.0583, 1.0,4,6
+4275113,Insertion of intrauterine contraceptive device,147,0.0546, 1.1,4,5
+4043071,Cognitive and behavioral therapy,146,0.0542,19.3,4,1
+40492359,Insertion of biventricular implantable cardioverter defibrillator,138,0.0512, 1.0,4,6
+4238715,Removal of intrauterine device,138,0.0512, 1.0,4,6
+4078793,Direct current cardioversion,134,0.0497,10.0,5,1
+4145310,Pelvis X-ray,132,0.0490, 1.0,5,7
+4010253,Nasal sinus endoscopy,125,0.0464, 1.0,5,7
+4197460,Injection of epinephrine,116,0.0431, 1.4,5,3
+4062501,Asthma screening,101,0.0375, 1.0,5,7
+4037675,Brief general examination,100,0.0371, 1.0,6,7
+4326177,Medication Reconciliation,100,0.0371, 1.0,6,7
+4187458,Review of systems,100,0.0371, 1.0,6,8
+4181917,Electroencephalogram,76,0.0282, 1.7,6,2
+4336464,Coronary artery bypass graft,67,0.0249, 1.1,6,5
+4216130,Percutaneous coronary intervention,67,0.0249, 1.1,7,6
+4035793,Pulmonary rehabilitation,63,0.0234,14.4,7,1
+4330583,Vasectomy,61,0.0226, 1.0,7,8
+4186930,Replacement of intrauterine contraceptive device,55,0.0204, 1.2,7,3
+4295880,Intramuscular injection,53,0.0197,17.1,7,1
+4163971,Laparoscopic cholecystectomy,35,0.0130, 1.0,8,8
+42535580,"Ultrasonography of abdomen, right upper quadrant and epigastrium",35,0.0130, 1.0,8,8
+4202832,Intubation,35,0.0130, 1.0,8,8
+4163951,Electrocardiographic procedure,35,0.0130, 1.0,8,9
+4059978,Insertion of subcutaneous contraceptive,31,0.0115, 1.1,8,6
+4301346,Surgical manipulation of shoulder joint,27,0.0100, 1.0,9,9
+4337138,Transplant of lung,21,0.0078, 1.0,9,9
+4199276,Removal of subcutaneous contraceptive,20,0.0074, 1.0,9,9
+4323902,Lung volume reduction surgery,17,0.0063, 1.0,9,9
+4117038,Bilateral tubal ligation,12,0.0044, 1.0,9,10
+44805732,Reinsertion of subcutaneous contraceptive,8,0.0030, 1.6,10,2
+4108705,Intravenous blood transfusion of packed cells,3,0.0011, 1.0,10,10
+4242997,Cholecystectomy,3,0.0011, 1.0,10,10
+4230209,Psychiatric follow-up,1,0.0004, 1.0,10,10
+4234705,Evaluation of psychiatric state of patient,1,0.0004, 1.0,10,10

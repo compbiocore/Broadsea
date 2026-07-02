@@ -1,0 +1,216 @@
+"DB_NAME","CDM_TABLE_NAME","CONCEPT_ID","CONCEPT_NAME","SEASONALITY_SCORE","IS_STATIONARY"
+"POSTGRES","VISIT_OCCURRENCE",9201,"Inpatient Visit",0.09,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",28060,"Streptococcal sore throat",0.07,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",30753,"Esophagitis",0.11,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",78272,"Sprain of wrist",0.18,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",80180,"Osteoarthritis",0.04,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",80502,"Osteoporosis",0.08,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",81151,"Sprain of ankle",0.09,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",81893,"Ulcerative colitis",0.08,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",133834,"Atopic dermatitis",0.21,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",134438,"Contact dermatitis",0.15,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",192671,"Gastrointestinal hemorrhage",0.08,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",195588,"Cystitis",0.11,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",255848,"Pneumonia",0.22,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",257012,"Chronic sinusitis",0.12,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",258780,"Emphysematous bronchitis",0.23,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",260139,"Acute bronchitis",0.03,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",261325,"Pulmonary emphysema",0.22,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",313217,"Atrial fibrillation",0.14,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",317576,"Coronary arteriosclerosis",0.14,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",321042,"Cardiac arrest",0.2,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",372328,"Otitis media",0.06,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",375671,"Concussion with loss of consciousness",0.19,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",378001,"Concussion with no loss of consciousness",0.09,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",378419,"Alzheimer's disease",0.13,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",381316,"Cerebrovascular accident",0.11,TRUE
+"POSTGRES","OBSERVATION",433644,"Shellfish allergy",0.24,TRUE
+"POSTGRES","OBSERVATION",439406,"Allergy to animal dander",0.19,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",439777,"Anemia",0.16,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",440086,"Child attention deficit disorder",0.16,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",440448,"Appendicitis",0.2,TRUE
+"POSTGRES","OBSERVATION",442116,"Allergy to eggs",0.24,TRUE
+"POSTGRES","DRUG_EXPOSURE",920300,"Nitrofurantoin 5 MG/ML Oral Suspension",0.08,TRUE
+"POSTGRES","DRUG_EXPOSURE",920334,"NITROFURANTOIN, MACROCRYSTALS 50 MG Oral Capsule",0.18,TRUE
+"POSTGRES","DRUG_EXPOSURE",1115171,"Naproxen sodium 220 MG Oral Tablet",0.04,TRUE
+"POSTGRES","DRUG_EXPOSURE",1118084,"celecoxib",0.04,TRUE
+"POSTGRES","DRUG_EXPOSURE",1124300,"Diclofenac",0.06,TRUE
+"POSTGRES","DRUG_EXPOSURE",1127078,"Acetaminophen 160 MG Oral Tablet",0.04,TRUE
+"POSTGRES","DRUG_EXPOSURE",1127433,"Acetaminophen 325 MG Oral Tablet",0.04,TRUE
+"POSTGRES","DRUG_EXPOSURE",1154615,"200 ACTUAT Albuterol 0.09 MG/ACTUAT Metered Dose Inhaler",0.4,TRUE
+"POSTGRES","DRUG_EXPOSURE",1310034,"3 ML Amiodarone hydrochloride 50 MG/ML Prefilled Syringe",0.1,TRUE
+"POSTGRES","DRUG_EXPOSURE",1332419,"Amlodipine 5 MG Oral Tablet",0.14,TRUE
+"POSTGRES","DRUG_EXPOSURE",1539411,"Simvastatin 20 MG Oral Tablet",0.18,TRUE
+"POSTGRES","DRUG_EXPOSURE",1545959,"atorvastatin 80 MG Oral Tablet",0.23,TRUE
+"POSTGRES","DRUG_EXPOSURE",1551192,"Prednisone 5 MG Oral Tablet",0.2,TRUE
+"POSTGRES","DRUG_EXPOSURE",1713671,"Amoxicillin 250 MG / Clavulanate 125 MG Oral Tablet",0.06,TRUE
+"POSTGRES","MEASUREMENT",3000876,"Codfish IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3000963,"Hemoglobin",0.16,TRUE
+"POSTGRES","MEASUREMENT",3001247,"Common Ragweed IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3001488,"Cow milk IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3005136,"Cladosporium herbarum IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3006322,"Oral temperature",0.03,TRUE
+"POSTGRES","MEASUREMENT",3006451,"Walnut IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3006734,"White Oak IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3009542,"Hematocrit",0.16,TRUE
+"POSTGRES","MEASUREMENT",3011505,"FEV1/FVC",0.06,TRUE
+"POSTGRES","MEASUREMENT",3012494,"Peanut IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3014599,"Egg white IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3015076,"Soybean IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3019406,"Latex IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3020655,"Honey bee IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3021226,"Shrimp IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3023430,"Cat dander IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3027231,"Wheat IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3036780,"American house dust mite IgE Ab [Units/volume] in Serum",0.61,TRUE
+"POSTGRES","MEASUREMENT",3049273,"DXA Radius and Ulna [T-score] Bone density",0.06,TRUE
+"POSTGRES","MEASUREMENT",3051031,"History of Hospitalizations+Outpatient visits Narrative",0.11,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4001336,"Concussion injury of brain",0.21,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4010253,"Nasal sinus endoscopy",0.25,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4024289,"Radiography of ankle",0.16,TRUE
+"POSTGRES","MEASUREMENT",4024958,"Throat culture",0.06,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4027663,"Peptic ulcer",0.1,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4029498,"Seizure disorder",0.26,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4035415,"Tear of meniscus of knee",0.33,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4035793,"Pulmonary rehabilitation",0.08,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4037675,"Brief general examination",0.16,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4043071,"Cognitive and behavioral therapy",0.03,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4047491,"Radiography of humerus",0.14,TRUE
+"POSTGRES","OBSERVATION",4048169,"Allergy to house dust mite",0.19,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4048171,"Perennial allergic rhinitis with seasonal variation",0.21,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4051466,"Childhood asthma",0.4,TRUE
+"POSTGRES","MEASUREMENT",4052083,"Measurement of respiratory function",0.06,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4057420,"Catheter ablation of tissue of heart",0.11,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4058899,"Plain X-ray of clavicle",0.09,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4059173,"Fracture of ankle",0.16,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4062501,"Asthma screening",0.4,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4078793,"Direct current cardioversion",0.04,FALSE
+"POSTGRES","CONDITION_OCCURRENCE",4084167,"Acute allergic reaction",0.2,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4094814,"Bullet wound",0.34,TRUE
+"POSTGRES","OBSERVATION",4102123,"Latex allergy",0.22,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4107731,"Subcutaneous immunotherapy",0.07,FALSE
+"POSTGRES","CONDITION_OCCURRENCE",4109685,"Laceration of foot",0.13,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4112343,"Acute viral pharyngitis",0.05,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4113008,"Laceration of hand",0.15,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4116491,"Escherichia coli urinary tract infection",0.12,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4125906,"Suture open wound",0.08,TRUE
+"POSTGRES","MEASUREMENT",4133840,"Spirometry",0.06,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4134304,"Fracture subluxation of wrist",0.18,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4142905,"Fracture of rib",0.19,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4145310,"Pelvis X-ray",0.14,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4146173,"Injury of tendon of the rotator cuff of shoulder",0.22,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4149245,"Rupture of patellar tendon",0.23,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4151422,"Sputum examination",0.07,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4152936,"Laceration of thigh",0.11,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4155034,"Laceration of forearm",0.19,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4156265,"Facial laceration",0.11,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4163872,"Plain chest X-ray",0.09,TRUE
+"POSTGRES","OBSERVATION",4163874,"History of myocardial infarction",0.22,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4166224,"Rupture of appendix",0.38,TRUE
+"POSTGRES","OBSERVATION",4169137,"Allergy to wheat",0.23,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4170947,"Bone immobilization",0.11,TRUE
+"POSTGRES","OBSERVATION",4174876,"Allergy to bee venom",0.21,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4181917,"Electroencephalogram",0.16,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4186930,"Replacement of intrauterine contraceptive device",0.15,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4187458,"Review of systems",0.16,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4191853,"Allergy screening test",0.61,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4195803,"Bone density scan",0.06,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4197460,"Injection of epinephrine",0.2,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4198190,"Appendectomy",0.2,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4202451,"Percutaneous mechanical thrombectomy of portal vein using fluoroscopic guidance",0.11,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4216130,"Percutaneous coronary intervention",0.22,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4218389,"Whiplash injury to neck",0.13,TRUE
+"POSTGRES","OBSERVATION",4219399,"Allergy to fish",0.29,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4230399,"Closed fracture of hip",0.14,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4237458,"Fracture of clavicle",0.09,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4238715,"Removal of intrauterine device",0.09,TRUE
+"POSTGRES","OBSERVATION",4240902,"Allergy to peanuts",0.38,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4243062,"Radiography of wrist",0.18,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4252419,"Radiologic examination of knee",0.19,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4266809,"Diverticular disease",0.09,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4275113,"Insertion of intrauterine contraceptive device",0.1,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4278672,"Fracture of forearm",0.14,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4283893,"Sinusitis",0.11,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4285898,"Polyp of colon",0.09,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4293740,"Injection of tetanus antitoxin",0.12,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4294548,"Acute bacterial sinusitis",0.1,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4295880,"Intramuscular injection",0.04,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4296204,"First degree burn",0.15,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4296205,"Second degree burn",0.14,TRUE
+"POSTGRES","OBSERVATION",4302207,"Allergy to grass pollen",0.18,TRUE
+"POSTGRES","OBSERVATION",4304110,"Allergy to mold",0.17,TRUE
+"POSTGRES","OBSERVATION",4306014,"Allergy to tree pollen",0.19,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4310024,"Angiodysplasia of stomach",0.12,TRUE
+"POSTGRES","OBSERVATION",4323208,"History of appendectomy",0.2,TRUE
+"POSTGRES","OBSERVATION",4324181,"History of cardiac arrest",0.2,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4326177,"Medication Reconciliation",0.16,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",4329847,"Myocardial infarction",0.22,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4330583,"Vasectomy",0.18,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",4336464,"Coronary artery bypass graft",0.22,TRUE
+"POSTGRES","DRUG_EXPOSURE",19006318,"Penicillin G 375 MG/ML Injectable Solution",0.04,TRUE
+"POSTGRES","DRUG_EXPOSURE",19008572,"Hydrocortisone 10 MG/ML Topical Cream",0.11,TRUE
+"POSTGRES","DRUG_EXPOSURE",19018935,"Digoxin 0.125 MG Oral Tablet",0.14,TRUE
+"POSTGRES","DRUG_EXPOSURE",19019979,"Ibuprofen 100 MG Oral Tablet",0.09,TRUE
+"POSTGRES","DRUG_EXPOSURE",19059056,"Aspirin 81 MG Oral Tablet",0.05,TRUE
+"POSTGRES","DRUG_EXPOSURE",19073183,"Amoxicillin 250 MG Oral Capsule",0.1,TRUE
+"POSTGRES","DRUG_EXPOSURE",19073188,"Amoxicillin 500 MG Oral Tablet",0.11,TRUE
+"POSTGRES","DRUG_EXPOSURE",19074679,"Carbamazepine 20 MG/ML Oral Suspension [Tegretol]",0.35,TRUE
+"POSTGRES","DRUG_EXPOSURE",19074841,"12 HR Cefaclor 500 MG Extended Release Oral Tablet",0.16,TRUE
+"POSTGRES","DRUG_EXPOSURE",19074843,"Cefaclor 250 MG Oral Capsule",0.14,TRUE
+"POSTGRES","DRUG_EXPOSURE",19075001,"Cefuroxime 250 MG Oral Tablet",0.12,TRUE
+"POSTGRES","DRUG_EXPOSURE",19075601,"clopidogrel 75 MG Oral Tablet",0.08,TRUE
+"POSTGRES","DRUG_EXPOSURE",19077572,"Galantamine 4 MG Oral Tablet",0.18,TRUE
+"POSTGRES","DRUG_EXPOSURE",19078461,"Ibuprofen 200 MG Oral Tablet",0.03,TRUE
+"POSTGRES","DRUG_EXPOSURE",19112599,"Chlorpheniramine Maleate 2 MG/ML Oral Solution",0.16,TRUE
+"POSTGRES","DRUG_EXPOSURE",19115351,"Diazepam 5 MG [Valium]",0.18,TRUE
+"POSTGRES","DRUG_EXPOSURE",19126352,"Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",0.14,TRUE
+"POSTGRES","DRUG_EXPOSURE",19128022,"{7 (Ethinyl Estradiol 0.035 MG / norgestimate 0.18 MG Oral Tablet) / 7 (Ethinyl Estradiol 0.035 MG / norgestimate 0.215 MG Oral Tablet) / 7 (Ethinyl Estradiol 0.035 MG / norgestimate 0.25 MG Oral Tablet) / 7 (Inert Ingredients 1 MG Oral Tablet) } Pack [Or",0.09,TRUE
+"POSTGRES","DRUG_EXPOSURE",19128065,"{7 (Inert Ingredients 1 MG Oral Tablet) / 21 (Mestranol 0.05 MG / Norethindrone 1 MG Oral Tablet) } Pack [Norinyl 1+50 28 Day]",0.07,TRUE
+"POSTGRES","DRUG_EXPOSURE",19129655,"Ampicillin 100 MG/ML Injectable Solution",0.08,TRUE
+"POSTGRES","DRUG_EXPOSURE",19133768,"Acetaminophen 750 MG / Hydrocodone Bitartrate 7.5 MG Oral Tablet",0.21,TRUE
+"POSTGRES","DRUG_EXPOSURE",19133873,"Penicillin V Potassium 250 MG Oral Tablet",0.07,TRUE
+"POSTGRES","DRUG_EXPOSURE",19133905,"Penicillin V Potassium 500 MG Oral Tablet",0.08,TRUE
+"POSTGRES","DRUG_EXPOSURE",40162522,"Acetaminophen 325 MG / Hydrocodone Bitartrate 7.5 MG Oral Tablet",0.09,TRUE
+"POSTGRES","DRUG_EXPOSURE",40163554,"Warfarin Sodium 5 MG Oral Tablet",0.14,TRUE
+"POSTGRES","DRUG_EXPOSURE",40165015,"Meperidine Hydrochloride 50 MG Oral Tablet",0.09,TRUE
+"POSTGRES","DRUG_EXPOSURE",40169216,"120 ACTUAT Fluticasone propionate 0.044 MG/ACTUAT Metered Dose Inhaler",0.4,TRUE
+"POSTGRES","DRUG_EXPOSURE",40169281,"60 ACTUAT Fluticasone propionate 0.25 MG/ACTUAT / salmeterol 0.05 MG/ACTUAT Dry Powder Inhaler",0.1,TRUE
+"POSTGRES","DRUG_EXPOSURE",40171902,"Verapamil hydrochloride 40 MG",0.13,TRUE
+"POSTGRES","DRUG_EXPOSURE",40173590,"Alendronic acid 10 MG Oral Tablet",0.11,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213160,"poliovirus vaccine, inactivated",0.03,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213198,"pneumococcal conjugate vaccine, 13 valent",0.07,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213201,"pneumococcal polysaccharide vaccine, 23 valent",0.06,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213227,"tetanus and diphtheria toxoids, adsorbed, preservative free, for adult use",0.02,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213251,"varicella virus vaccine",0.17,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213260,"zoster vaccine, live",0.04,FALSE
+"POSTGRES","DRUG_EXPOSURE",40213296,"hepatitis A vaccine, adult dosage",0.04,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213306,"hepatitis B vaccine, adult dosage",0.03,TRUE
+"POSTGRES","DRUG_EXPOSURE",40213314,"Haemophilus influenzae type b vaccine, PRP-OMP conjugate",0.07,TRUE
+"POSTGRES","DRUG_EXPOSURE",40220960,"alteplase 100 MG Injection",0.13,TRUE
+"POSTGRES","DRUG_EXPOSURE",40222846,"Memantine hydrochloride 2 MG/ML Oral Solution",0.25,TRUE
+"POSTGRES","DRUG_EXPOSURE",40224805,"1 ML medroxyprogesterone acetate 150 MG/ML Injection",0.16,TRUE
+"POSTGRES","DRUG_EXPOSURE",40229134,"Acetaminophen 21.7 MG/ML / Dextromethorphan Hydrobromide 1 MG/ML / doxylamine succinate 0.417 MG/ML Oral Solution",0.1,TRUE
+"POSTGRES","DRUG_EXPOSURE",40231925,"Acetaminophen 325 MG / Oxycodone Hydrochloride 5 MG Oral Tablet",0.16,TRUE
+"POSTGRES","DRUG_EXPOSURE",40232448,"Diphenhydramine Hydrochloride 25 MG Oral Tablet",0.12,TRUE
+"POSTGRES","DRUG_EXPOSURE",40236446,"Methylphenidate Hydrochloride 20 MG Oral Tablet",0.23,TRUE
+"POSTGRES","DRUG_EXPOSURE",40236824,"Phenazopyridine hydrochloride 100 MG Oral Tablet",0.08,TRUE
+"POSTGRES","DRUG_EXPOSURE",40243436,"1 ML Atropine Sulfate 1 MG/ML Injection",0.21,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",40479422,"Injury of medial collateral ligament of knee",0.29,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",40479768,"Injury of anterior cruciate ligament",0.23,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",40480160,"Pathological fracture due to osteoporosis",0.15,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",40481087,"Viral sinusitis",0.03,TRUE
+"POSTGRES","CONDITION_OCCURRENCE",40486433,"Perennial allergic rhinitis",0.21,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",40492359,"Insertion of biventricular implantable cardioverter defibrillator",0.21,TRUE
+"POSTGRES","MEASUREMENT",40758406,"HIV status",0.11,TRUE
+"POSTGRES","MEASUREMENT",40766240,"Are you covered by health insurance or some other kind of health care plan [PhenX]",0.11,TRUE
+"POSTGRES","MEASUREMENT",40769179,"Percentage area affected by eczema Head and Neck [PhenX]",0.18,TRUE
+"POSTGRES","MEASUREMENT",40769184,"Percentage area affected by eczema Upper extremity - bilateral [PhenX]",0.18,TRUE
+"POSTGRES","MEASUREMENT",40769189,"Percentage area affected by eczema Trunk [PhenX]",0.18,TRUE
+"POSTGRES","MEASUREMENT",40769194,"Percentage area affected by eczema Lower extremity - bilateral [PhenX]",0.18,TRUE
+"POSTGRES","DRUG_EXPOSURE",42902245,"{5 (Ethinyl Estradiol 0.02 MG / norethindrone acetate 1 MG Oral Tablet) / 7 (Ethinyl Estradiol 0.03 MG / norethindrone acetate 1 MG Oral Tablet) / 9 (Ethinyl Estradiol 0.035 MG / norethindrone acetate 1 MG Oral Tablet) / 7 (Ferrous fumarate 75 MG Oral Tab",0.14,TRUE
+"POSTGRES","PROCEDURE_OCCURRENCE",44783196,"Surgical manipulation of joint of knee",0.19,TRUE
+"POSTGRES","OBSERVATION",45766064,"History of single seizure",0.26,TRUE
+"POSTGRES","DRUG_EXPOSURE",46233710,"Doxycycline Monohydrate 100 MG Oral Tablet",0.21,TRUE
+"POSTGRES","DRUG_EXPOSURE",46233988,"Doxycycline Monohydrate 50 MG Oral Tablet",0.07,TRUE
+"POSTGRES","MEASUREMENT",46235214,"Sexual orientation",0.11,TRUE
+"POSTGRES","DRUG_EXPOSURE",46275916,"1 ML Epinephrine 1 MG/ML Injection",0.21,TRUE

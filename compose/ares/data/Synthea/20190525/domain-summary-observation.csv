@@ -1,0 +1,22 @@
+CONCEPT_ID,CONCEPT_NAME,NUM_PERSONS,PERCENT_PERSONS,RECORDS_PER_PERSON,PERCENT_PERSONS_NTILE,RECORDS_PER_PERSON_NTILE
+4323208,History of appendectomy,157,0.0583,1.0,1,1
+4304110,Allergy to mold,152,0.0564,1.0,1,1
+439406,Allergy to animal dander,149,0.0553,1.0,1,1
+4324181,History of cardiac arrest,138,0.0512,1.0,2,2
+4302207,Allergy to grass pollen,110,0.0408,1.0,2,2
+4306014,Allergy to tree pollen,108,0.0401,1.0,3,3
+4048169,Allergy to house dust mite,103,0.0382,1.0,3,3
+433644,Shellfish allergy,93,0.0345,1.0,4,4
+45766064,History of single seizure,76,0.0282,1.0,4,4
+4163874,History of myocardial infarction,67,0.0249,1.0,5,5
+4240902,Allergy to peanuts,50,0.0186,1.0,5,5
+4174876,Allergy to bee venom,42,0.0156,1.0,6,6
+4102123,Latex allergy,40,0.0148,1.0,6,6
+4169137,Allergy to wheat,38,0.0141,1.0,7,7
+442116,Allergy to eggs,37,0.0137,1.0,7,7
+4219399,Allergy to fish,36,0.0134,1.0,8,8
+438614,Allergy to nut,33,0.0122,1.0,8,8
+4139681,Allergy to dairy product,32,0.0119,1.0,9,9
+37017711,Allergy to soy,11,0.0041,1.0,9,9
+443279,Attempted suicide - cut/stab,1,0.0004,1.0,10,10
+4168004,Burn injury,1,0.0004,1.0,10,10

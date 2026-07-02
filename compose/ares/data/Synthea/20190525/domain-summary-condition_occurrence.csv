@@ -1,0 +1,81 @@
+CONCEPT_ID,CONCEPT_NAME,NUM_PERSONS,PERCENT_PERSONS,RECORDS_PER_PERSON,PERCENT_PERSONS_NTILE,RECORDS_PER_PERSON_NTILE
+40481087,Viral sinusitis,2686,0.9970,6.4,1,1
+80180,Osteoarthritis,2630,0.9762,1.0,1,4
+4112343,Acute viral pharyngitis,2606,0.9673,3.9,1,1
+260139,Acute bronchitis,2543,0.9440,3.2,1,1
+372328,Otitis media,2025,0.7517,1.8,1,1
+28060,Streptococcal sore throat,1677,0.6225,1.6,1,1
+81151,Sprain of ankle,1357,0.5037,1.4,1,1
+378001,Concussion with no loss of consciousness,852,0.3163,1.2,1,2
+4283893,Sinusitis,833,0.3092,1.2,2,2
+257012,Chronic sinusitis,812,0.3014,1.0,2,4
+4027663,Peptic ulcer,802,0.2977,1.0,2,4
+4294548,Acute bacterial sinusitis,786,0.2918,1.2,2,2
+4218389,Whiplash injury to neck,708,0.2628,1.2,2,2
+78272,Sprain of wrist,677,0.2513,1.1,2,2
+4278672,Fracture of forearm,510,0.1893,1.1,2,2
+192671,Gastrointestinal hemorrhage,479,0.1778,1.0,2,5
+4113008,Laceration of hand,462,0.1715,1.1,3,2
+4156265,Facial laceration,459,0.1704,1.1,3,3
+4155034,Laceration of forearm,459,0.1704,1.1,3,3
+4152936,Laceration of thigh,455,0.1689,1.1,3,3
+4237458,Fracture of clavicle,449,0.1667,1.1,3,3
+4109685,Laceration of foot,448,0.1663,1.1,3,3
+4134304,Fracture subluxation of wrist,442,0.1641,1.1,3,3
+4059173,Fracture of ankle,427,0.1585,1.1,3,3
+4116491,Escherichia coli urinary tract infection,419,0.1555,1.2,4,2
+81893,Ulcerative colitis,413,0.1533,1.0,4,5
+30753,Esophagitis,408,0.1514,1.0,4,5
+4266809,Diverticular disease,401,0.1489,1.0,4,5
+4310024,Angiodysplasia of stomach,388,0.1440,1.0,4,5
+4285898,Polyp of colon,375,0.1392,1.0,4,5
+4296204,First degree burn,359,0.1333,1.1,4,3
+195588,Cystitis,289,0.1073,1.1,4,4
+4146173,Injury of tendon of the rotator cuff of shoulder,254,0.0943,1.0,5,5
+440086,Child attention deficit disorder,253,0.0939,1.0,5,5
+4142905,Fracture of rib,249,0.0924,1.1,5,4
+375671,Concussion with loss of consciousness,249,0.0924,1.1,5,4
+381316,Cerebrovascular accident,218,0.0809,1.0,5,6
+4296205,Second degree burn,216,0.0802,1.1,5,4
+317576,Coronary arteriosclerosis,191,0.0709,1.0,5,6
+80502,Osteoporosis,171,0.0635,1.0,5,6
+440448,Appendicitis,157,0.0583,1.0,6,6
+321042,Cardiac arrest,138,0.0512,1.0,6,6
+313217,Atrial fibrillation,137,0.0508,1.0,6,6
+4230399,Closed fracture of hip,132,0.0490,1.0,6,6
+378419,Alzheimer's disease,117,0.0434,1.0,6,6
+4084167,Acute allergic reaction,116,0.0431,1.4,6,1
+134438,Contact dermatitis,113,0.0420,1.0,6,7
+40479422,Injury of medial collateral ligament of knee,107,0.0397,1.1,6,4
+439777,Anemia,100,0.0371,1.0,7,7
+4051466,Childhood asthma,96,0.0356,1.0,7,7
+4035415,Tear of meniscus of knee,82,0.0304,1.0,7,7
+40479768,Injury of anterior cruciate ligament,80,0.0297,1.0,7,7
+4048171,Perennial allergic rhinitis with seasonal variation,79,0.0293,1.0,7,7
+4149245,Rupture of patellar tendon,79,0.0293,1.0,7,7
+261325,Pulmonary emphysema,77,0.0286,1.0,7,7
+4029498,Seizure disorder,76,0.0282,1.0,7,8
+4001336,Concussion injury of brain,70,0.0260,1.0,8,8
+4329847,Myocardial infarction,67,0.0249,1.0,8,8
+40486433,Perennial allergic rhinitis,64,0.0238,1.0,8,8
+40480160,Pathological fracture due to osteoporosis,56,0.0208,1.4,8,1
+133834,Atopic dermatitis,54,0.0200,1.0,8,8
+255848,Pneumonia,52,0.0193,1.0,8,8
+258780,Emphysematous bronchitis,48,0.0178,1.0,8,8
+4094814,Bullet wound,46,0.0171,1.0,8,8
+4166224,Rupture of appendix,41,0.0152,1.0,9,9
+198809,Acute cholecystitis,35,0.0130,1.0,9,9
+196456,Gallstone,35,0.0130,1.0,9,9
+4056621,Recurrent urinary tract infection,33,0.0122,1.0,9,9
+140673,Hypothyroidism,31,0.0115,1.0,9,9
+380378,Epilepsy,30,0.0111,1.0,9,9
+4132546,Traumatic brain injury,27,0.0100,1.0,9,9
+4280726,Seasonal allergic rhinitis,25,0.0093,1.0,9,9
+4299128,Third degree burn,24,0.0089,1.0,10,10
+4048695,Fracture of vertebral column without spinal cord injury,23,0.0085,1.0,10,10
+4043241,Familial Alzheimer's disease of early onset,19,0.0070,1.0,10,10
+80809,Rheumatoid arthritis,18,0.0067,1.0,10,10
+198199,Pyelonephritis,9,0.0033,1.0,10,10
+317009,Asthma,5,0.0019,1.0,10,10
+4066995,Fracture of vertebral column with spinal cord injury,3,0.0011,1.0,10,10
+44782520,Chronic paralysis due to lesion of spinal cord,3,0.0011,1.0,10,10
