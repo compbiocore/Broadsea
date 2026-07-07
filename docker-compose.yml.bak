@@ -69,7 +69,6 @@ services:
     container_name: broadsea-hades
     image: ohdsi/broadsea-hades:1.19.0
     platform: "linux/amd64"
-    restart: unless-stopped
     secrets:
       - HADES_PASSWORD
     environment:
