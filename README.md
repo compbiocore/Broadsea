@@ -5,6 +5,7 @@
 ## Contents
 
 - [Introduction](#introduction)
+  - [Brown VM deployment](#brown-vm-deployment)
   - [What runs locally](#what-runs-locally)
 - [Local installation](#local-installation)
   - [Prerequisites](#prerequisites)
@@ -39,12 +40,6 @@
   - [Viewing Log Files](#viewing-log-files)
   - [Atlasdb upgrade - Docker volume error](#Atlasdb-upgrade-docker-volume-error)
 - [Hardware/OS Requirements for Installing Docker](#hardwareos-requirements-for-installing-docker)
-  - [Mac OS X](#mac-os-x)
-  - [Windows](#windows)
-  - [Docker for Windows Requirements](#docker-for-windows-requirements)
-  - [Docker Toolbox Windows Requirements](#docker-toolbox-windows-requirements)
-  - [Linux](#linux)
-  - [Linux Requirements](#linux-requirements)
 - [License](#license)
 
 ## Introduction
@@ -82,6 +77,18 @@ Additionally, Broadsea offers limited support for services not specifically need
 - Open Shiny Server for deploying Shiny apps without a commercial license
 - Posit Connect for sites with commercial Posit licenses, for deploying Shiny apps
 - DBT for ETL design
+
+### Brown VM deployment
+
+This setup is currently deployed on Brown University's VM at
+`devexcite.services.brown.edu`. Access requires an authorized Brown account:
+
+1. Connect to Brown's VPN.
+2. SSH into the VM, replacing `<brown-username>` with your Brown username:
+
+   ```shell
+   ssh <brown-username>@devexcite.services.brown.edu
+   ```
 
 ### What runs locally
 
