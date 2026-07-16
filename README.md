@@ -5,10 +5,18 @@
 ## Contents
 
 - [Introduction](#introduction)
-  - [A Note on Docker Compose V2](#a-note-on-docker-compose-v2)
-  - [Broadsea Dependencies](#broadsea-dependencies)
-  - [Mac Silicon](#mac-silicon)
-- [Broadsea - Quick start](#broadsea---quick-start)
+  - [What runs locally](#what-runs-locally)
+- [Local installation](#local-installation)
+  - [Prerequisites](#prerequisites)
+  - [Clone and configure](#clone-and-configure)
+  - [Start the core stack](#start-the-core-stack)
+  - [Verify the installation](#verify-the-installation)
+  - [Optional local deployment script](#optional-local-deployment-script)
+- [Configuration guide](#configuration-guide)
+  - [Host, HTTP, and TLS](#host-http-and-tls)
+  - [Architecture and Apple silicon](#architecture-and-apple-silicon)
+  - [Secrets](#secrets)
+  - [Persistence and ports](#persistence-and-ports)
 - [Broadsea - Community Contributions](#community-contributions)
 - [Broadsea - Advanced Usage](#broadsea---advanced-usage)
   - [.env file](#env-file)
@@ -24,7 +32,7 @@
   - [CDM Post Processing](#cdm-post-processing-cdm-post-processing)
   - [Evidence Generation](#evidence-generation)
   - [Evidence Dissemination](#evidence-dissemination)
-- [Shutdown Broadsea](#shutdown-broadsea)
+- [Shutting Down Broadsea](#shutting-down-broadsea)
 - [Broadsea Intended Uses](#broadsea-intended-uses)
 - [Troubleshooting](#troubleshooting)
   - [View the status of the running Docker containers](#view-the-status-of-the-running-docker-containers)
@@ -42,6 +50,11 @@
 ## Introduction
 
 Broadsea runs the core OHDSI technology stack using cross-platform Docker container technology.
+
+This fork also includes a CompBioCore local deployment and smoke-test workflow for running
+Achilles, DataQualityDashboard (DQD), and AresIndexer against the included demonstration CDM.
+The instructions below distinguish the standard Broadsea Compose workflow from that optional,
+fork-specific workflow.
 
 [Information on Observational Health Data Sciences and Informatics (OHDSI)](http://www.ohdsi.org/ "OHDSI Website")
 
@@ -70,48 +83,204 @@ Additionally, Broadsea offers limited support for services not specifically need
 - Posit Connect for sites with commercial Posit licenses, for deploying Shiny apps
 - DBT for ETL design
 
-### A Note on Docker Compose V2
+### What runs locally
 
-Throughout this README, we will show docker compose commands with the convention of `docker compose` (no hyphen), per the new Docker Compose V2 standard outlined by [Docker](https://docs.docker.com/compose/migrate/#docker-compose-vs-docker-compose).
+The `default` profile starts Traefik plus the following application services:
 
-**For Broadsea 3.5, you will need Docker version 1.27.0+.**
+| Component | Purpose | Local route or port |
+|---|---|---|
+| Traefik | Reverse proxy and path-based routing | `http://127.0.0.1/`; host ports 80 and 443 |
+| Broadsea content | Landing page | `/` |
+| Atlas | OHDSI web interface | `/atlas` |
+| WebAPI | Atlas REST API | `/WebAPI` |
+| Broadsea AtlasDB | PostgreSQL for WebAPI and the demo data | host port 5432 |
+| HADES | RStudio Server with OHDSI tools | `/hades` |
 
-### Broadsea Dependencies
+Compose profiles add services such as Ares, Solr, vocabulary loading, CDM
+post-processing, pgAdmin, OpenLDAP, Shiny, Jupyter, DBT, and Perseus. Traefik is
+not assigned to a profile, so it starts whenever any profile is started.
 
-- Linux, Mac, or Windows with WSL
-- Docker 1.27.0+
-- Git
-- Chromium-based web browser (Chrome, Edge, etc.)
+## Local installation
 
-### Mac Silicon
+### Prerequisites
 
-If using Mac Silicon (M1, M2), you **may** need to set the DOCKER_ARCH variable in Section 1 of the .env file to "linux/arm64". Some Broadsea services still need to run via emulation of linux/amd64 and are hard-coded as such.
+- A 64-bit Linux, macOS, or Windows machine. On Windows, use Docker Desktop with
+  the WSL 2 backend and run the commands from a WSL terminal.
+- Docker Engine or Docker Desktop with the Compose v2 plugin. Commands in this
+  repository use `docker compose`, not the retired `docker-compose` command.
+- Git and a Chromium-based browser.
+- At least 4 GB of memory available to Docker for the core profile; 8 GB or more
+  is recommended when adding Ares or CDM post-processing.
+- Free host ports 80, 443, and 5432. See [Persistence and ports](#persistence-and-ports)
+  if another web server or PostgreSQL instance already uses them.
 
-## Broadsea - Quick start
-
-- Download and install Docker. See the installation instructions at the [Docker Web Site](https://docs.docker.com/engine/installation/ "Install Docker")
-- git clone this GitHub repo:
+Confirm the required tools before continuing:
 
 ```shell
-git clone https://github.com/OHDSI/Broadsea.git
+git --version
+docker version
+docker compose version
+docker info
 ```
 
-- In a command line / terminal window - navigate to the directory where this README.md file is located and start the Broadsea Docker Containers using the below command. On Linux you may need to use 'sudo' to run this command. Wait up to one minute for the Docker containers to start.
+If `docker info` cannot reach the daemon, start Docker Desktop or the Docker
+service. On Linux, configure Docker for non-root use or prefix Docker commands
+with `sudo` consistently.
+
+### Clone and configure
+
+Clone this fork and enter its root directory:
 
 ```shell
+git clone https://github.com/compbiocore/Broadsea.git
+cd Broadsea
+```
+
+The tracked `.env` is configured for the hosted CompBioCore deployment. **Do not
+start it unchanged for a localhost-only installation.** At minimum, edit Section
+1 of `.env` to use:
+
+```dotenv
+BROADSEA_HOST="127.0.0.1"
+HTTP_TYPE="http"
+BROADSEA_CERTS_FOLDER="./certs"
+```
+
+`BROADSEA_HOST` must contain only a host name or IP address—no scheme, port, or
+path. Traefik uses it in host-routing rules, while `HTTP_TYPE` chooses the HTTP
+or HTTPS Traefik configuration. Review the remainder of `.env` before starting;
+its numbered sections are summarized under [Configuration guide](#configuration-guide).
+
+The files under `secrets/` are mounted as Docker secrets. Replace development
+or placeholder values for any enabled service. Keep every `*_FILE` variable as
+a path to a file; do not replace it with the secret value itself.
+
+Validate interpolation and profile selection without starting containers:
+
+```shell
+docker compose --profile default config --quiet
+```
+
+### Start the core stack
+
+Pull images and start the default profile from the repository root:
+
+```shell
+docker compose --profile default pull
 docker compose --profile default up -d
 ```
 
-- If you want to always use the latest Docker container images, then use the below option
-  
+The initial start can take several minutes while images download, PostgreSQL is
+initialized, and WebAPI migrations run. `up --pull always -d` may be used when
+you intentionally want to refresh images, but it can change an otherwise
+repeatable installation because some services use floating image tags.
+
+### Verify the installation
+
+Check container state and follow the initialization logs:
+
 ```shell
-docker-compose --profile default up --pull always -d
+docker compose --profile default ps
+docker compose --profile default logs --tail=100 broadsea-atlasdb ohdsi-webapi-from-image
 ```
 
-- In your web browser open the URL: `"http://127.0.0.1"`
-- Click on the Atlas link to open Atlas in a new browser window
-- Click on the Hades link to open HADES (RStudio) in a new browser window.
-  - The default RStudio userid is 'ohdsi' and the default password is located in the `./secrets/hades/HADES_PASSWORD` file.
+When AtlasDB is healthy and WebAPI has finished starting, open:
+
+- Landing page: <http://127.0.0.1/>
+- Atlas: <http://127.0.0.1/atlas>
+- WebAPI status: <http://127.0.0.1/WebAPI/info>
+- HADES/RStudio: <http://127.0.0.1/hades>
+- Traefik dashboard: <http://127.0.0.1/dashboard/>
+
+The HADES username comes from `HADES_USER` in `.env`; its password is the
+contents of the file named by `HADES_PASSWORD_FILE`. A container marked
+`Exited (0)` can be normal for one-shot jobs such as vocabulary loaders and CDM
+post-processing. It is not normal for the core Atlas, WebAPI, database, HADES,
+content, or Traefik services.
+
+### Optional local deployment script
+
+`deploy.sh` is a fork-specific smoke test. It starts the `default` and `ares`
+profiles, pulls CompBioCore Achilles/DQD/AresIndexer images from GHCR, waits for
+AtlasDB, checks endpoints, and runs `Achilles -> DQD -> AresIndexer` against the
+configured CDM. It is more resource-intensive than the core installation.
+
+```shell
+./deploy.sh --help
+./deploy.sh --skip-postprocessing  # core plus Ares; no CDM processing
+./deploy.sh                        # full smoke test and post-processing
+```
+
+Useful options are `--skip-pull`, `--clean-ares`, and `--full-ares`. The last
+option generates `.env.local.generated` from `.env` with `ARES_RUN_NETWORK=TRUE`.
+`--clean-ares` deletes existing files under `ares/data/`, so preserve any output
+you need before using it. Override `TAG`, `GHCR_ORG`, or `PLATFORM` only when you
+intend to test different post-processing images.
+
+## Configuration guide
+
+The `.env` file is the configuration source for Compose. Its sections cover:
+
+| Sections | Configuration area |
+|---|---|
+| 1 | Host, protocol, certificates, architecture, and GitHub token file |
+| 2–3 | Atlas UI and WebAPI database/runtime settings |
+| 4–5 | Atlas/WebAPI authentication providers |
+| 6–10 | Git builds, Solr vocabulary, HADES, vocabulary loading, and Phoebe |
+| 11–15 | Ares, landing-page links, OpenLDAP, Shiny, and Posit Connect |
+| 16–18 | Perseus/DBT, CDM post-processing, and pgAdmin |
+
+Change only the sections required by the profiles you enable. Run
+`docker compose --profile <profile> config --quiet` after each configuration
+change to catch missing variables, files, and Compose syntax errors.
+
+### Host, HTTP, and TLS
+
+For localhost, use `BROADSEA_HOST=127.0.0.1` and `HTTP_TYPE=http`. For access
+from other machines, use a DNS name or server IP that clients can resolve and
+allow inbound TCP 80/443 through the host and network firewalls.
+
+For HTTPS, set `HTTP_TYPE=https`, place the certificate and private key at
+`BROADSEA_CERTS_FOLDER/broadsea.crt` and
+`BROADSEA_CERTS_FOLDER/broadsea.key`, and ensure the certificate covers
+`BROADSEA_HOST`. Do not expose this stack to untrusted networks with default
+credentials, disabled Atlas authentication, or the Traefik dashboard enabled.
+
+### Architecture and Apple silicon
+
+Several core services are explicitly pinned to `linux/amd64` in
+`docker-compose.yml`. Apple silicon can run them through Docker Desktop
+emulation, but startup and post-processing will be slower. Leave
+`DOCKER_ARCH=linux/amd64` unless every selected image is known to provide and
+support an ARM64 variant. If an image fails with an architecture or Rosetta
+error, enable Docker Desktop's x86/amd64 emulation support and retry.
+
+### Secrets
+
+Compose maps the `*_FILE` variables in `.env` to files below `secrets/`. The
+file should contain only the secret (a trailing newline is acceptable). Treat
+the provided values as development defaults, replace those used by enabled
+profiles, restrict file permissions, and never put production credentials in a
+commit. Changing the file on the host may require recreating the consuming
+container:
+
+```shell
+docker compose --profile default up -d --force-recreate
+```
+
+### Persistence and ports
+
+PostgreSQL, RStudio home/tmp, OpenLDAP, JDBC drivers, post-processing results,
+Perseus, Jupyter, and pgAdmin use named Docker volumes declared at the top of
+`docker-compose.yml`. `docker compose down` removes containers and the Compose
+network but preserves these volumes. `docker compose down -v` deletes persistent
+data and should be used only for an intentional reset.
+
+The core deployment binds ports 80 and 443 for Traefik and 5432 for AtlasDB. If
+a port is occupied, stop the conflicting local service or deliberately change
+the host side of the relevant `ports:` mapping (for example, `55432:5432` for
+AtlasDB). Container-to-container connection strings should continue to use the
+container port and service name, such as `broadsea-atlasdb:5432`.
 
 ## Community Contributions
 
@@ -133,7 +302,9 @@ Here are some guiding principles for making contributions - these items should b
 
 ### .env file
 
-The .env file that comes with Broadsea has default and sample values. For advanced use, modify the values as appropriate, as covered below.
+The tracked `.env` contains deployment values for this fork, not universal
+localhost defaults. Review it profile by profile and use the local Section 1
+settings described above before running Broadsea on a workstation.
 
 ### Docker Secrets (New for 3.5)
 
@@ -373,14 +544,14 @@ Use the following commands to down and then up Broadsea's containers.
 
 ```shell
 docker compose down
-docker compose start
+docker compose --profile default up -d
 ```
 
 Or target a specific profile using ```--profile```
 
 ```shell
 docker compose --profile profile1 down
-docker compose --profile profile1 up
+docker compose --profile profile1 up -d
 ```
 
 ## Down and Remove Volumes
@@ -389,7 +560,7 @@ By default Docker will create volumes and persist them. Any saved files or custo
 
 ```shell
 docker compose down -v
-docker compose up
+docker compose --profile default up -d
 ```
 
 ## Broadsea Intended Uses
@@ -420,57 +591,40 @@ docker compose ps
 Logs per container are available using this syntax:
 
 ```shell
-docker logs containername
+docker compose logs --tail=200 service-name
+docker compose logs --follow service-name
 ```
+
+Use Compose service names (for example, `ohdsi-webapi-from-image`) in these
+commands. Run `docker compose ps --services` to list them.
 
 ### Atlasdb upgrade docker volume error
 
-Remove the atlasdb-postgres-data volume and Broadsea will recreate it.
-Any changes made previously to the atlasdb data will be lost.
+Remove the `atlasdb-postgres-data` volume only when an intentional database
+reset is acceptable. **This permanently deletes the local Atlas/WebAPI database
+and any data stored in that volume.** Export or back up anything you need first.
 
 ```shell
 docker compose down
 docker volume rm atlasdb-postgres-data
-docker compose up
+docker compose --profile default up -d
 ```
 
 ## Hardware/OS Requirements for Installing Docker
 
-### Mac OS X
+Use a currently supported 64-bit operating system and follow Docker's official
+[installation documentation](https://docs.docker.com/engine/install/). Docker
+Desktop for macOS and Windows includes Compose v2. Linux users install Docker
+Engine and the Compose plugin using the packages for their distribution.
 
-Follow the instructions here - [Install Docker for Mac](https://www.docker.com/products/docker#/mac)\
-*Docker for Mac* includes both Docker Engine & Docker Compose
+On Windows, the WSL 2 backend is recommended. Keep the repository inside the
+Linux filesystem for better bind-mount performance and consistent permissions.
+Do not mix PowerShell and WSL Docker contexts while operating one deployment.
 
-For Mac Silicon, you may need to enable "Use Rosetta for x86/amd64 emulation on Apple Silicon" in the "Features in Development" Settings menu.
-
-### Windows
-
-Follow the instructions here - [Install Docker for Windows](https://www.docker.com/products/docker#/windows)\
-*Docker for Windows* includes both Docker Engine & Docker Compose
-
-### Docker for Windows Requirements
-
-64bit Windows 10 Pro, Enterprise and Education (1511 November update, Build 10586 or later). In the future Docker will support more versions of Windows 10. The Hyper-V package must be enabled. The Docker for Windows installer will enable it for you, if needed. (This requires a reboot).
-
-Note. *Docker for Windows* is the preferred Docker environment for Broadsea, but *Docker-Toolbox* may be used instead if your machine doesn't meet the above requirements. (See info below.)
-
-### Docker Toolbox Windows Requirements
-
-Follow the instructions here - [Install Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)
-
-64bit Windows 7 or higher. The Hyper-V package must be enabled. The Docker for Windows installer will enable it for you, if needed. (This requires a reboot).
-
-### Linux
-
-Follow the instructions here:\
-[Install Docker for Linux](https://www.docker.com/products/docker#/linux)\
-[Install Docker Compose for Linux](https://docs.docker.com/compose/install/)
-
-### Linux Requirements
-
-Docker requires a 64-bit installation. Additionally, your kernel must be 3.10 at minimum. The latest 3.10 minor version or a newer maintained version are also acceptable.
-
-Kernels older than 3.10 lack some of the features required to run Docker containers.
+On macOS, allocate enough memory in Docker Desktop and see
+[Architecture and Apple silicon](#architecture-and-apple-silicon). On Linux,
+verify that the user running Broadsea can access the Docker daemon and that the
+host firewall permits only the intended clients.
 
 ## License
 
