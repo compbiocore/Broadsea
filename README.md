@@ -405,6 +405,10 @@ To load a new OMOP Vocabulary into a Postgres schema, review and fill out Sectio
 
 The Broadsea atlasdb Postgres instance is listed by default, but you can use an external Postgres instance. You need to copy your Athena downloaded files into ./omop_vocab/files.
 
+For the Brown WintEHR FHIR-to-OMOP source, see
+[`WINTEHR_OMOP.md`](WINTEHR_OMOP.md). The Athena files are not included in the
+Broadsea image or repository and must be loaded before the WintEHR ETL runs.
+
 #### Build SOLR Vocab for Atlas
 
 >Note: with WebAPI 2.14, you will need to use the webapi-from-git profile and set WEBAPI_MAVEN_PROFILE to webapi-docker,webapi-solr
