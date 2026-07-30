@@ -1,0 +1,15 @@
+project_name: wintehr-oscar-artifact-load
+snapshot_root: /tmp/unused-snapshots
+fhir:
+  base_url: https://devexcite2.services.brown.edu/fhir/R4
+  bearer_token: ""
+  resources:
+    - Patient
+  search_parameters: {}
+omop:
+  cdm_version: "5.4"
+  database_url: ${OMOP_DATABASE_URL}
+  cdm_schema: wintehr_cdm
+  vocabulary_schema: omop_vocab
+  results_schema: wintehr_results
+  audit_schema: wintehr_etl

@@ -37,3 +37,22 @@ deployment guide.
 
 Athena vocabulary CSVs, UMLS keys, database passwords, FHIR snapshots, and OMOP
 patient-level exports must not be committed to this repository.
+
+## OSCAR-produced OMOP artifacts
+
+The supported file-based path runs terminology resolution on OSCAR and emits a
+checksummed OMOP `.tar.gz` artifact. Copy the example loader configuration and
+environment file, set the released ETL image and database URL, then run:
+
+```bash
+cp config/wintehr-artifact.example.yaml config/wintehr-artifact.yaml
+cp .env.wintehr-loader.example .env.wintehr-loader
+chmod 600 config/wintehr-artifact.yaml .env.wintehr-loader
+
+FHIR_TO_OMOP_IMAGE=ghcr.io/ORG/fhir-to-omop:RELEASE \
+  ./load-wintehr-omop.sh /path/to/wintehr-omop.tar.gz
+```
+
+The loader validates the package and requires its Athena version to exactly
+match `omop_vocab`. It loads the already-mapped OMOP rows; Atlas is not a file
+importer. Run Achilles/DQD and WebAPI source registration after the load.
