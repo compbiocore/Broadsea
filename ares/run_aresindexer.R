@@ -179,14 +179,40 @@ file.copy(
 
 outputFile <- file.path(datasourceReleaseOutputFolder, "temporal-characterization.csv")
 
-withUppercaseQuerySql({
-  Achilles::performTemporalCharacterization(
-    connectionDetails = connectionDetails,
-    cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,
-    resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,
-    outputFile = outputFile
-  )
-})
+tryCatch(
+  {
+    withUppercaseQuerySql({
+      Achilles::performTemporalCharacterization(
+        connectionDetails = connectionDetails,
+        cdmDatabaseSchema = cdmConfig$CDM_DATABASE_SCHEMA,
+        resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,
+        outputFile = outputFile
+      )
+    })
+  },
+  error = function(e) {
+    if (grepl("NO ACHILLES DATA FOUND", conditionMessage(e), fixed = TRUE)) {
+      message(
+        "No supported Achilles monthly rows were available; ",
+        "skipping optional temporal characterization."
+      )
+      if (file.exists(outputFile)) {
+        file.remove(outputFile)
+      }
+    } else {
+      stop(e)
+    }
+  }
+)
+
+requiredReports <- file.path(
+  datasourceReleaseOutputFolder,
+  c("person.json", "observationperiod.json")
+)
+missingReports <- requiredReports[!file.exists(requiredReports)]
+if (length(missingReports) > 0) {
+  stop("ARES core reports were not generated: ", paste(missingReports, collapse = ", "))
+}
 
 AresIndexer::augmentConceptFiles(
   releaseFolder = datasourceReleaseOutputFolder
@@ -413,4 +439,3 @@ tryCatch(
 message("ARES indexing complete.")
 message("Expected index file: ", file.path(aresDataRoot, "index.json"))
 message("Expected DQD index file: ", file.path(aresDataRoot, "export_query_index.json"))
-
