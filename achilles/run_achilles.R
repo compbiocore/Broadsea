@@ -89,3 +89,19 @@ result <- Achilles::achilles(
     sqlDialect = connectionDetails$dbms,
     outputFolder = outputFolder
 )
+
+# Achilles currently accepts optimizeAtlasCache in achilles(), but some package
+# versions do not invoke the exported post-processing function. Run it
+# explicitly so Atlas cache optimization cannot silently be skipped.
+if (isTRUE(as.logical(jobConfig$ACHILLES_OPTIMIZE_ATLAS_CACHE))) {
+  message("Running explicit Atlas cache optimization.")
+  Achilles::optimizeAtlasCache(
+    connectionDetails = connectionDetails,
+    resultsDatabaseSchema = cdmConfig$RESULTS_DATABASE_SCHEMA,
+    vocabDatabaseSchema = cdmConfig$VOCAB_DATABASE_SCHEMA,
+    outputFolder = outputFolder,
+    sqlOnly = FALSE,
+    verboseMode = TRUE,
+    tempAchillesPrefix = jobConfig$ACHILLES_TEMP_ACHILLES_PREFIX
+  )
+}
