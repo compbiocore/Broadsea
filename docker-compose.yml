@@ -127,6 +127,7 @@ services:
     mem_limit: "2G"
     environment:
       POSTGRES_PASSWORD: mypass
+    command: ["postgres", "-c", "max_connections=${ATLASDB_MAX_CONNECTIONS:-400}"]
     ports:
       - "5432:5432"
     volumes:
