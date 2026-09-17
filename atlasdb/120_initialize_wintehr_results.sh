@@ -7,7 +7,8 @@ RESULTS_SCHEMA=${RESULTS_DATABASE_SCHEMA:-wintehr_results}
 VOCAB_SCHEMA=${VOCAB_DATABASE_SCHEMA:-omop_vocab}
 TEMP_SCHEMA=${SCRATCH_DATABASE_SCHEMA:-wintehr_scratch}
 ddl_file=$(mktemp)
-trap 'rm -f "$ddl_file"' EXIT
+idempotent_ddl_file=$(mktemp)
+trap 'rm -f "$ddl_file" "$idempotent_ddl_file"' EXIT
 
 echo "Initializing Atlas support tables in $RESULTS_SCHEMA"
 if [[ -z ${WEBAPI_DDL_URL:-} ]]; then
@@ -42,9 +43,17 @@ grep -Eqi 'concept_hierarchy' "$ddl_file" || {
   exit 1
 }
 
+# WebAPI's generated results DDL is not fully rerunnable: some index
+# statements omit IF NOT EXISTS even though the surrounding tables are
+# intentionally retained. Make index creation idempotent before applying it.
+sed -E \
+  -e 's/^CREATE UNIQUE INDEX /CREATE UNIQUE INDEX IF NOT EXISTS /' \
+  -e 's/^CREATE INDEX /CREATE INDEX IF NOT EXISTS /' \
+  "$ddl_file" > "$idempotent_ddl_file"
+
 cd "$BROADSEA_DIR"
 docker compose exec -T broadsea-atlasdb \
-  psql -X -U postgres -d postgres -v ON_ERROR_STOP=1 < "$ddl_file"
+  psql -X -U postgres -d postgres -v ON_ERROR_STOP=1 < "$idempotent_ddl_file"
 
 hierarchy_count=$(docker compose exec -T broadsea-atlasdb \
   psql -X -U postgres -d postgres -tAc \
