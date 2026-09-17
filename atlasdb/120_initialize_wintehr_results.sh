@@ -55,6 +55,16 @@ cd "$BROADSEA_DIR"
 docker compose exec -T broadsea-atlasdb \
   psql -X -U postgres -d postgres -v ON_ERROR_STOP=1 < "$idempotent_ddl_file"
 
+# WebAPI's generated hierarchy may omit concepts used by the person and
+# condition/condition-era Achilles reports. Backfill those used report strata
+# from the loaded OMOP vocabulary so Atlas can resolve their labels.
+docker compose exec -T broadsea-atlasdb \
+  psql -X -U postgres -d postgres \
+  -v ON_ERROR_STOP=1 \
+  -v results_schema="$RESULTS_SCHEMA" \
+  -v vocab_schema="$VOCAB_SCHEMA" \
+  < "$BROADSEA_DIR/atlasdb/130_backfill_wintehr_concept_hierarchy.sql"
+
 hierarchy_count=$(docker compose exec -T broadsea-atlasdb \
   psql -X -U postgres -d postgres -tAc \
   "select count(*) from ${RESULTS_SCHEMA}.concept_hierarchy")
