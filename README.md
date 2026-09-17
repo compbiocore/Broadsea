@@ -90,6 +90,34 @@ This setup is currently deployed on Brown University's VM at
    ssh <brown-username>@devexcite.services.brown.edu
    ```
 
+### WintEHR direct refresh (recommended)
+
+The complete WintEHR-to-Atlas workflow runs on the Broadsea VM. Broadsea reads
+WintEHR through its FHIR API over HTTPS; no pipeline stage needs to run on the
+WintEHR VM or on OSCAR/HPC.
+
+After the one-time configuration is complete, SSH to Broadsea and run:
+
+```shell
+cd /fhir-to-omop
+sh deploy/run-fhir-to-omop-pipeline.sh
+BROADSEA_DIR=/Broadsea ./deploy/refresh-atlas-results.sh
+```
+
+The first command exports the current WintEHR resources, converts FHIR to OMOP,
+and loads PostgreSQL. The second command runs Achilles, rebuilds the ARES/Atlas
+reports, and restarts WebAPI. Refresh the Atlas browser page when it finishes.
+
+The Broadsea VM must be able to reach
+`https://devexcite2.services.brown.edu/fhir/R4`. The Broadsea `.env.wintehr`
+overlay must exist, and the `fhir-to-omop` repository must have its production
+configuration and database connection configured. Pull the repository only when
+the pipeline code changes; it is not required for every data refresh.
+
+The older workflow that separates export, conversion, and loading across
+WintEHR, OSCAR, and Broadsea remains available for large transfers or sites
+that require those processing boundaries.
+
 ### What runs locally
 
 The `default` profile starts Traefik plus the following application services:
