@@ -105,8 +105,11 @@ BROADSEA_DIR=/Broadsea ./deploy/refresh-atlas-results.sh
 ```
 
 The first command exports the current WintEHR resources, converts FHIR to OMOP,
-and loads PostgreSQL. The second command runs Achilles, rebuilds the ARES/Atlas
-reports, and restarts WebAPI. Refresh the Atlas browser page when it finishes.
+and loads PostgreSQL. The second command fully rebuilds Achilles results,
+recreates Atlas support data, rebuilds ARES, and restarts WebAPI. It finishes
+successfully only when Atlas's own Person and Condition Era report endpoints
+contain mapped race, mapped ethnicity, and condition-era results. Refresh the
+Atlas browser page when it finishes.
 
 The Broadsea VM must be able to reach
 `https://devexcite2.services.brown.edu/fhir/R4`. The Broadsea `.env.wintehr`
