@@ -72,6 +72,14 @@ docker compose exec -T broadsea-atlasdb \
   -v ON_ERROR_STOP=1 \
   < "$BROADSEA_DIR/atlasdb/140_make_wintehr_vocabulary_default.sql"
 
+# WebAPI persists complete Person and domain-treemap payloads in PostgreSQL.
+# Restarting its container does not clear those rows. Invalidate only WINTEHR
+# so the next Atlas request is built from the Achilles results initialized here.
+docker compose exec -T broadsea-atlasdb \
+  psql -X -U postgres -d postgres \
+  -v ON_ERROR_STOP=1 \
+  < "$BROADSEA_DIR/atlasdb/145_clear_wintehr_achilles_cache.sql"
+
 hierarchy_count=$(docker compose exec -T broadsea-atlasdb \
   psql -X -U postgres -d postgres -tAc \
   "select count(*) from ${RESULTS_SCHEMA}.concept_hierarchy")

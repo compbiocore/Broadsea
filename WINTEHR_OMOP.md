@@ -37,6 +37,11 @@ deployment guide. The registration gives the WintEHR vocabulary daimon the
 highest priority so WebAPI's default vocabulary endpoints resolve WintEHR
 concepts. The Atlas refresh script reapplies this setting automatically.
 
+WebAPI persists generated Data Sources reports in `webapi.achilles_cache`.
+The initializer invalidates only the `WINTEHR` entries after rebuilding Atlas
+support data because restarting WebAPI alone does not refresh cached Person or
+condition-era reports.
+
 Athena vocabulary CSVs, UMLS keys, database passwords, FHIR snapshots, and OMOP
 patient-level exports must not be committed to this repository.
 
