@@ -33,7 +33,9 @@ Run the transferred-snapshot loader from the `fhir-to-omop` checkout. After it
 succeeds, copy `.env.wintehr.example` to the untracked `.env.wintehr`, run the
 `cdm-postprocessing` profile, and execute
 `atlasdb/110_register_wintehr_source.sql` as described by that repository's
-deployment guide.
+deployment guide. The registration gives the WintEHR vocabulary daimon the
+highest priority so WebAPI's default vocabulary endpoints resolve WintEHR
+concepts. The Atlas refresh script reapplies this setting automatically.
 
 Athena vocabulary CSVs, UMLS keys, database passwords, FHIR snapshots, and OMOP
 patient-level exports must not be committed to this repository.

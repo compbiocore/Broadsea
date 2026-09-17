@@ -65,6 +65,13 @@ docker compose exec -T broadsea-atlasdb \
   -v vocab_schema="$VOCAB_SCHEMA" \
   < "$BROADSEA_DIR/atlasdb/130_backfill_wintehr_concept_hierarchy.sql"
 
+# WebAPI's vocabulary endpoints use the highest-priority vocabulary daimon.
+# Keep WINTEHR as the default so Atlas can resolve WintEHR concept labels.
+docker compose exec -T broadsea-atlasdb \
+  psql -X -U postgres -d postgres \
+  -v ON_ERROR_STOP=1 \
+  < "$BROADSEA_DIR/atlasdb/140_make_wintehr_vocabulary_default.sql"
+
 hierarchy_count=$(docker compose exec -T broadsea-atlasdb \
   psql -X -U postgres -d postgres -tAc \
   "select count(*) from ${RESULTS_SCHEMA}.concept_hierarchy")

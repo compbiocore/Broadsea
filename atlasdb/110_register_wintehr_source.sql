@@ -38,7 +38,7 @@ INSERT INTO webapi.source_daimon (
     source_daimon_id, source_id, daimon_type, table_qualifier, priority
 )
 SELECT COALESCE(MAX(source_daimon_id), 0) + 1,
-       :wintehr_source_id, 1, :'vocab_schema', 10
+       :wintehr_source_id, 1, :'vocab_schema', 20
 FROM webapi.source_daimon;
 
 INSERT INTO webapi.source_daimon (
