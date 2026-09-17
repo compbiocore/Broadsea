@@ -100,7 +100,11 @@ After the one-time configuration is complete, SSH to Broadsea and run:
 
 ```shell
 cd /fhir-to-omop
+# Defaults to all current WintEHR patients.
 sh deploy/run-fhir-to-omop-pipeline.sh
+
+# Or select exactly 5,000 patients.
+sh deploy/run-fhir-to-omop-pipeline.sh --limit 5000
 BROADSEA_DIR=/Broadsea ./deploy/refresh-atlas-results.sh
 ```
 
