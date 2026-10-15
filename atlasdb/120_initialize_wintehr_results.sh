@@ -53,6 +53,13 @@ sed -E \
   "$ddl_file" > "$idempotent_ddl_file"
 
 cd "$BROADSEA_DIR"
+
+# Cohort Generation uses the CDM schema for report concept names. Keep its
+# concept relation linked to the loaded Athena vocabulary on every refresh.
+docker compose exec -T broadsea-atlasdb \
+  psql -X -U postgres -d postgres -v ON_ERROR_STOP=1 \
+  < "$BROADSEA_DIR/atlasdb/115_link_wintehr_cdm_concept.sql"
+
 docker compose exec -T broadsea-atlasdb \
   psql -X -U postgres -d postgres -v ON_ERROR_STOP=1 < "$idempotent_ddl_file"
 
