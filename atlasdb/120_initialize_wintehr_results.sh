@@ -5,6 +5,7 @@ set -euo pipefail
 BROADSEA_DIR=${BROADSEA_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 RESULTS_SCHEMA=${RESULTS_DATABASE_SCHEMA:-wintehr_results}
 VOCAB_SCHEMA=${VOCAB_DATABASE_SCHEMA:-omop_vocab}
+CDM_SCHEMA=${CDM_DATABASE_SCHEMA:-wintehr_cdm}
 TEMP_SCHEMA=${SCRATCH_DATABASE_SCHEMA:-wintehr_scratch}
 ddl_file=$(mktemp)
 idempotent_ddl_file=$(mktemp)
@@ -63,6 +64,7 @@ docker compose exec -T broadsea-atlasdb \
   -v ON_ERROR_STOP=1 \
   -v results_schema="$RESULTS_SCHEMA" \
   -v vocab_schema="$VOCAB_SCHEMA" \
+  -v cdm_schema="$CDM_SCHEMA" \
   < "$BROADSEA_DIR/atlasdb/130_backfill_wintehr_concept_hierarchy.sql"
 
 # WebAPI's vocabulary endpoints use the highest-priority vocabulary daimon.
