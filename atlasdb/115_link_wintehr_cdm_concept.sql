@@ -37,6 +37,21 @@ BEGIN
     IF (SELECT count(*) FROM wintehr_cdm.concept WHERE concept_id IN (8507, 8532)) <> 2 THEN
         RAISE EXCEPTION 'WintEHR CDM concept view cannot resolve gender concepts';
     END IF;
+
+    IF EXISTS (
+        SELECT 1
+        FROM (
+            SELECT gender_concept_id AS concept_id FROM wintehr_cdm.person
+            UNION
+            SELECT race_concept_id FROM wintehr_cdm.person
+            UNION
+            SELECT ethnicity_concept_id FROM wintehr_cdm.person
+        ) demographic
+        LEFT JOIN wintehr_cdm.concept c USING (concept_id)
+        WHERE demographic.concept_id <> 0 AND c.concept_id IS NULL
+    ) THEN
+        RAISE EXCEPTION 'WintEHR demographic concept is absent from omop_vocab.concept';
+    END IF;
 END
 $$;
 
